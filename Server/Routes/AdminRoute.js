@@ -112,6 +112,15 @@ router.put('/edit_employee/:id', (req, res) => {
     })
 })
 
+router.delete('/delete_employee/:id', (req, res) => {
+    const id = req.params.id;
+    const sql = "delete from employee where id = ?"
+    con.query(sql,[id], (err, result) => {
+        if(err) return res.json({Status: false, Error: "Query Error"+err})
+        return res.json({Status: true, Result: result})
+    })
+})
+
 
 
 export { router as adminRouter }
