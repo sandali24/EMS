@@ -28,15 +28,15 @@ const AddEmployee = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        // const formData = new FormData();
-        // formData.append('name', employee.name);
-        // formData.append('email', employee.email);
-        // formData.append('password', employee.password);
-        // formData.append('address', employee.address);
-        // formData.append('salary', employee.salary);
-        // formData.append('image', employee.image);
-        // formData.append('category_id', employee.category_id);
-        axios.post('http://localhost:3000/auth/add_employee', employee)
+        const formData = new FormData();
+        formData.append('name', employee.name);
+        formData.append('email', employee.email);
+        formData.append('password', employee.password);
+        formData.append('address', employee.address);
+        formData.append('salary', employee.salary);
+        formData.append('image', employee.image);
+        formData.append('category_id', employee.category_id);
+        axios.post('http://localhost:3000/auth/add_employee', formData)
             .then(result => console.log(result.data))
             .catch(err => console.log(err))
     }
