@@ -6,13 +6,25 @@ const Home = () => {
   const [adminTotal, setAdminTotal] = useState(0)
   const [employeeTotal, setemployeeTotal] = useState(0)
   const [salaryTotal, setSalaryTotal] = useState(0)
+  const [admins, setAdmins] = useState([])
 
   useEffect(() => {
     adminCount();
     employeeCount();
     salaryCount();
-    // AdminRecords();
+    AdminRecords();
   }, [])
+
+  const AdminRecords = () => {
+    axios.get('http://localhost:3000/auth/admin_records')
+    .then(result => {
+      if(result.data.Status) {
+        setAdmins(result.data.Result)
+      } else {
+         alert(result.data.Error)
+      }
+    })
+  }
 
   const adminCount = () => {
     axios.get('http://localhost:3000/auth/admin_count')
@@ -86,7 +98,7 @@ const Home = () => {
               <th>Action</th>
             </tr>
           </thead>
-          {/* <tbody>
+          <tbody>
             {
               admins.map(a => (
                 <tr>
@@ -104,7 +116,7 @@ const Home = () => {
                 </tr>
               ))
             }
-          </tbody> */}
+          </tbody>
         </table>
       </div>
     </div>
